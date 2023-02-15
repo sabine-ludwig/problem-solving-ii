@@ -4,29 +4,40 @@ Task 1: Reverse a String
 Write code that takes a string as input and returns the string reversed
 i.e. “Hello” will be returned as “olleH”
 '''
-
 # start at the last letter (the length of the word - 1 will be the index of the final letter),
-# then stop at -1 (because that would be the final letter of the word again) and step through it
+# then stop at -1 (because stop is not inclusive so if we want index[0] to be included, 
+# we have to set our stopping point to one element beyond that) and step through it
 # going backwards one at a time
 
-word = "hello"
-for i in range(len(word) -1, -1, -1): 
-    print(word[i])                    
+def reverse_string(string):
+    new_string = ''
+    for i in range(len(string) -1, -1, -1): 
+        new_string += string[i] 
+    return(new_string)    
 
-#tried using enumerate first and learned through a lot of frustrating debugging and googling that
-#that will not work
+# tried using enumerate first and learned through a lot of frustrating debugging and googling that
+# that will not work
+
+# reverse_string("hello")      
+
+def reverse_string_alternate(string):
+    new_string = ''
+    for i in string:
+        string[i] += new_string
+    return new_string
+
+print(reverse_string_alternate("hello"))
 
 '''
 Task 2: Capitalize a Letter
 Write code that takes a string as input and capitalize the first letter of each word. 
 Words will be separated by only one space. i.e. “hello world” should be outputted as “Hello World”
 '''
-
 # capitalized letters will appear either at the very first index (0) of a string or immediately
 # after a space (if string[i-1] == " ") 
 
 # string = "hello world"
-# print(string.capitalize())
+# print(string.title())
 
 def cap_first_letter(string):
     new_string = ''
@@ -53,29 +64,62 @@ A “palindrome” is a word, phrase, or sequence that reads the same backward a
 Write code that takes a user input and checks to see if it is a Palindrome and reports the result
 '''
 
-def is_palindrome_alternate(word):
-    word_reversed = ''
+# try to adjust for palindromes that include spaces or punctuation
+# a man, a plan, a canal: PANAMA
 
-    for i in range(len(word) -1, -1, -1): 
-        word_reversed += word[i]
+def is_palindrome(word):
+    word = input("What word would you like to check? > ").lower()
+    word_reversed = reverse_string(word)
+
+    # for i in range(len(word) -1, -1, -1): 
+    #     word_reversed += word[i]
 
     if word_reversed == word:
         print("Yes")
     else:
         print("No")
 
-is_palindrome_alternate("hello")
+is_palindrome()
+
+def is_palindrome_alternate(word):
+
+# walking through one letter at a time, forwards and backwards
+# forwards will start with index 0 and go up to the len(word) - 1
+# backwards will start with index -1 and will go down to -len(word)
+
+    word = input("What word would you like to check? > ").lower()
+    reverse_string = ''
+
+    for i in range(len(word)):
+        # print(word[i])
+        # print(word[-1 - i])
+# 0, 1, 2, 3
+#-1,-2,-3,-4 
+        if word[i] != word[-1 - i]:
+            print("That is not a palindrome.")
+            return 
+    # if nothing causes the above to happen and break the loop (return), then we know that 
+    # our input is a palindrome, so we don't need an elif/else/etc
+    print("Yes, that is a palindrome.")
+
+# halfway = int(len(word)/2) # can add +1 if you want it to explicitly check the middle character
+# for i in range(halfway):
+# ^ works bc if there are an odd number of characters, the middle character doesn't matter
+# it just needs the letters outside of it to mirror one another 
 
 '''
 Bonus Challenge
 Task 4 : Compress a string of characters
 For example, an input of "aaabbbbbccccaacccbbbaaabbbaaa" would compress to "3a5b4c2a3c3b3a3b3a"
 '''
+# for each instance of a character, output should be the number of times that character appears
+# and then the character referenced by the number 
 
-# def compress_string(string):
+def compress_string(string):
 
-    # char_count = 0
+    char_count = 0
+    new_sting = ""
 
-    # for char in string:
-    #     if 
+    for char in string:
+        if 
 
