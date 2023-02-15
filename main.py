@@ -116,10 +116,11 @@ For example, an input of "aaabbbbbccccaacccbbbaaabbbaaa" would compress to "3a5b
 # and then the character referenced by the number 
 
 def compress_string(string):
+    pass
 
-    char_count = 0
-    new_sting = ""
-
-    for char in string:
-        if 
+# if character after character you are looking at is the same as the character you're currently
+# looking at, then add to count for that character and then check if the next one is also the same, 
+# once the next character is different, add your count and your character to a new string, continue
+# through string until length of original string has been covered
+        
 
